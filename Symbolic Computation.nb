@@ -1,0 +1,66 @@
+Notebook[{Cell[
+CellGroupData[{Cell[
+BoxData[{RowBox[{RowBox[{"(*"," ",RowBox[{"===","===","===","===","===","===","===","===","===","===","===","===","===","===","===","===","===","==="}]," ","*)"}],"\n",RowBox[
+{"(*"," ",RowBox[{RowBox[{"Step"," ","01"}],":"," ",RowBox[{RowBox[{"Symbolic"," ","analysis"," ","of"," ","the"," ","Gamma"}],"-",RowBox[
+{"based"," ","integrand"}]}]}]," ","*)"}],"\n",RowBox[{"(*"," ",RowBox[{"===","===","===","===","===","===","===","===","===","===","===","===","===","===","===","===","===","==="}]," ","*)"}],"\n","\n",RowBox[
+{RowBox[{"ClearAll","[","\"Global`*\"","]"}],";"}]}],RowBox[{"\n","\n"}],RowBox[{RowBox[
+{"(*"," ",RowBox[{"Original"," ","integrand"}]," ","*)"}],"\n",RowBox[{RowBox[{RowBox[
+{"q","[","t_","]"}]," ",":="," ",RowBox[{RowBox[{"1","/",RowBox[{"Gamma","[","t","]"}]}]," ","-"," ","1"}]}],";"}]}],RowBox[
+{"\n","\n"}],RowBox[{RowBox[{"(*"," ",RowBox[{"1."," ","Verify"," ","the"," ","Gamma"," ","recurrence"," ","relation"}]," ","*)"}],"\n",RowBox[
+{RowBox[{"gammaRecurrence"," ","="," ",RowBox[{"FullSimplify","[","\n",RowBox[{RowBox[
+{RowBox[{"Gamma","[",RowBox[{"t"," ","+"," ","1"}],"]"}]," ","=="," ",RowBox[{"t"," ",RowBox[
+{"Gamma","[","t","]"}]}]}],",","\n",RowBox[{"Assumptions"," ","\[Rule]"," ",RowBox[
+{"t"," ",">"," ","0"}]}]}],"\n","]"}]}],";"}]}],RowBox[{"\n","\n"}],RowBox[{RowBox[
+{"(*"," ",RowBox[{RowBox[{RowBox[{"2."," ","Compute"," ","the"," ","right"}],"-",RowBox[
+{"hand"," ","limit"," ","at"," ","t"}]}]," ","="," ",RowBox[{RowBox[{"0.","\n","The"," ","substitution"," ","t"}]," ","="," ",RowBox[
+{RowBox[{"1","/","u"}]," ","ensures"," ","that"," ","t"," ","approaches","\n","zero"," ","through"," ","positive"," ","values"," ","as"," ","u"," ","approaches"," ",RowBox[
+{"infinity","."}]}]}]}]," ","*)"}],"\n",RowBox[{RowBox[{"qLimitAtZero"," ","="," ",RowBox[
+{"FullSimplify","[","\n",RowBox[{"Limit","[",RowBox[{RowBox[{RowBox[{"1","/",RowBox[
+{"Gamma","[",RowBox[{"1","/","u"}],"]"}]}]," ","-"," ","1"}],","," ",RowBox[{"u"," ","\[Rule]"," ","Infinity"}]}],"]"}],"\n","]"}]}],";"}]}],RowBox[
+{"\n","\n"}],RowBox[{RowBox[{"(*"," ",RowBox[{RowBox[{"3."," ","Series"," ","expansion"," ","near"," ","t"}]," ","="," ","0"}]," ","*)"}],"\n",RowBox[
+{RowBox[{"qSeriesAtZero"," ","="," ",RowBox[{"Series","[","\n",RowBox[{RowBox[{RowBox[
+{"1","/",RowBox[{"Gamma","[","t","]"}]}]," ","-"," ","1"}],",","\n",RowBox[{"{",RowBox[
+{"t",","," ","0",","," ","3"}],"}"}]}],"\n","]"}]}],";"}]}],RowBox[{"\n","\n"}],RowBox[
+{RowBox[{"(*"," ",RowBox[{"4."," ","Define"," ","the"," ","continuous"," ","extension"," ","of"," ","the"," ","integrand"}]," ","*)"}],"\n",RowBox[
+{RowBox[{RowBox[{"qExtended","[","t_","]"}]," ",":="," ",RowBox[{"Piecewise","[","\n",RowBox[
+{RowBox[{"{","\n",RowBox[{"{",RowBox[{RowBox[{"-","1"}],","," ",RowBox[{"t"," ","=="," ","0"}]}],"}"}],"\n","}"}],",","\n",RowBox[
+{RowBox[{"1","/",RowBox[{"Gamma","[","t","]"}]}]," ","-"," ","1"}]}],"\n","]"}]}],";"}]}],RowBox[
+{"\n","\n"}],RowBox[{RowBox[{"(*"," ",RowBox[{RowBox[{"5."," ","Value"," ","of"," ","F"," ","at"," ","x"}]," ","="," ","0"}]," ","*)"}],"\n",RowBox[
+{RowBox[{"FAtZero"," ","="," ",RowBox[{"1"," ","+"," ",RowBox[{"Integrate","[","\n",RowBox[
+{RowBox[{"qExtended","[","t","]"}],",","\n",RowBox[{"{",RowBox[{"t",","," ","0",","," ",RowBox[
+{"Sinh","[","0","]"}]}],"}"}]}],"\n","]"}]}]}],";"}]}],RowBox[{"\n","\n"}],RowBox[
+{RowBox[{"(*"," ",RowBox[{"6."," ","Display"," ","all"," ","symbolic"," ","results"}]," ","*)"}],"\n",RowBox[
+{RowBox[{"Print","[",RowBox[{"\"Gamma recurrence relation: \"",","," ","gammaRecurrence"}],"]"}],";"}]}],"\n",RowBox[
+{RowBox[{"Print","[",RowBox[{"\"Right-hand limit of q(t) at zero: \"",","," ","qLimitAtZero"}],"]"}],";"}],"\n",RowBox[
+{RowBox[{"Print","[",RowBox[{"\"Series of q(t) around zero: \"",","," ","qSeriesAtZero"}],"]"}],";"}],"\n",RowBox[
+{RowBox[{"Print","[",RowBox[{"\"Continuous value q(0): \"",","," ",RowBox[{"qExtended","[","0","]"}]}],"]"}],";"}],"\n",RowBox[
+{RowBox[{RowBox[{"Print","[",RowBox[{"\"Value F(0): \"",","," ","FAtZero"}],"]"}],";"}],"\n"}]}],
+"Input",CellLabel -> "In[1]:= ",ExpressionUUID -> "4d1f25ca-00fd-4007-94d9-9350ede0fb98"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"\"Gamma recurrence relation: \"","\[InvisibleSpace]","True"}],
+SequenceForm["Gamma recurrence relation: ",True],Editable -> False],StandardForm],
+"Print",ExpressionUUID -> "d275e51d-5f8f-4149-be79-50ddf8c7f1ab"],Cell[
+BoxData[InterpretationBox[
+RowBox[{"\"Right-hand limit of q(t) at zero: \"","\[InvisibleSpace]",RowBox[{"-","1"}]}],
+SequenceForm["Right-hand limit of q(t) at zero: ",-1],Editable -> False],StandardForm],
+"Print",ExpressionUUID -> "12254b50-8283-47e1-9abf-369b8700eaa0"],Cell[
+BoxData[InterpretationBox[
+RowBox[{"\"Series of q(t) around zero: \"","\[InvisibleSpace]",InterpretationBox[
+RowBox[{RowBox[{"-","1"}],"+","t","+",RowBox[{"EulerGamma"," ",SuperscriptBox["t",
+"2"]}],"+",RowBox[{FractionBox["1","12"]," ",RowBox[{"(",RowBox[{RowBox[{"6"," ",SuperscriptBox[
+"EulerGamma","2"]}],"-",SuperscriptBox["\[Pi]","2"]}],")"}]," ",SuperscriptBox["t",
+"3"]}],"+",InterpretationBox[SuperscriptBox[RowBox[{"O","[","t","]"}],"4"],SeriesData[
+t,0,{},0,4,1],Editable -> False]}],SeriesData[t,0,{-1,1,EulerGamma,Times[Rational[
+1,12],Plus[Times[6,Power[EulerGamma,2]],Times[-1,Power[Pi,2]]]]},0,4,1],Editable -> False]}],
+SequenceForm["Series of q(t) around zero: ",SeriesData[t,0,{-1,1,EulerGamma,Times[
+Rational[1,12],Plus[Times[6,Power[EulerGamma,2]],Times[-1,Power[Pi,2]]]]},0,4,1]],
+Editable -> False],StandardForm],"Print",ExpressionUUID -> "310715df-ab56-4593-9ec7-e62e4294dd71"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"\"Continuous value q(0): \"","\[InvisibleSpace]",RowBox[
+{"-","1"}]}],SequenceForm["Continuous value q(0): ",-1],Editable -> False],StandardForm],
+"Print",ExpressionUUID -> "a7c5bfaa-f875-469f-bdbf-1b42caab3869"],Cell[
+BoxData[InterpretationBox[
+RowBox[{"\"Value F(0): \"","\[InvisibleSpace]","1"}],SequenceForm["Value F(0): ",
+1],Editable -> False],StandardForm],"Print",ExpressionUUID -> "67726386-dc86-4534-b475-c7afc235c165"]},
+Open],ExpressionUUID -> "d04c2b33-97e4-4211-9870-a317818a289a"]},StyleDefinitions -> "Default.nb",
+FrontEndVersion -> "15. for Wolfram Cloud 1.76 (June 11, 2026)"]
